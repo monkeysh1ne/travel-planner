@@ -1,4 +1,12 @@
-%container
-  %row
-    %col-lg-12 mt-5
-      %div :class => [@mx-auto, @mt-5] {style=width: 400px}
+.container
+  .row
+    .col-lg-12.mt-5
+      - if flash[:alert]
+        .alert.alert-warning
+          = flash[:alert]
+     .mx-auto.mt-5{:style => "width: 400px;"}
+        = form_with(url: search_path, method: 'get', local: true) do
+          .form-group
+            = label_tag :country, 'Search for a country'
+            = text_field_tag :country, nil, placeholder: 'E.g., New Zealand', class: 'form-control'
+        = button_tag 'Search', class: 'btn btn-success btn-block'
